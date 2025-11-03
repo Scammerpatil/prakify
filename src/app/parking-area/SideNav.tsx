@@ -14,7 +14,7 @@ import {
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/AuthContext";
 import ThemeToggler from "@/components/Navbar/ThemeToggler";
-import { SideNavItem, User } from "@/Types";
+import { ParkingArea, SideNavItem, User } from "@/Types";
 
 const SideNav = ({
   children,
@@ -24,7 +24,7 @@ const SideNav = ({
   className?: string;
 }) => {
   const router = useRouter();
-  const { user } = useAuth() as { user: User };
+  const { user } = useAuth() as { user: ParkingArea };
   const handleLogout = async () => {
     toast.promise(axios.get("/api/auth/logout"), {
       loading: "Logging out...",
@@ -69,7 +69,7 @@ const SideNav = ({
 
             <div className="navbar lg:hidden px-2">
               <Link
-                href={`/user/dashboard`}
+                href={`/parking-area/dashboard`}
                 className="navbar-start text-xl font-bold flex items-center"
                 style={{ fontFamily: "Orbitron, sans-serif" }}
               >
@@ -83,7 +83,7 @@ const SideNav = ({
                 <ThemeToggler />
                 <div className="dropdown dropdown-left cursor-pointer bg-transparent">
                   <Image
-                    src={user.profileImage!}
+                    src={user.displayImage!}
                     alt="Avatar"
                     className="rounded-full"
                     width={40}
@@ -126,7 +126,7 @@ const SideNav = ({
                 <ThemeToggler />
                 <div className="dropdown dropdown-left cursor-pointer bg-transparent">
                   <Image
-                    src={user.profileImage!}
+                    src={user.displayImage!}
                     alt="Avatar"
                     className="rounded-full"
                     width={40}
@@ -152,6 +152,12 @@ const SideNav = ({
                     </div>
                     <hr className="my-2 border-base-content" />
                     <div className="flex flex-col">
+                      <Link
+                        className="text-left px-4 py-2 text-base-content hover:bg-base-200 transition duration-200"
+                        href={`/user/settings`}
+                      >
+                        My Account
+                      </Link>
                       <button
                         onClick={handleLogout}
                         className="text-left px-4 py-2 text-base-content text-dark hover:bg-base-200 transition duration-200"

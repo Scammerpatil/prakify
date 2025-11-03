@@ -11,6 +11,7 @@ const UserSchema = new Schema(
       number: { type: String, required: true, unique: true },
       model: { type: String },
     },
+    isBlocked: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

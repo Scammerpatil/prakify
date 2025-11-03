@@ -22,18 +22,8 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     icon: <IconCar width="22" height="22" />,
   },
   {
-    title: "Extend Slot",
-    path: "/user/extend",
-    icon: <IconClockHour4 width="22" height="22" />,
-  },
-  {
-    title: "Booking History",
+    title: "Booking History & Extend Time",
     path: "/user/history",
     icon: <IconHistory width="22" height="22" />,
-  },
-  {
-    title: "Settings",
-    path: "/user/settings",
-    icon: <IconSettings width="22" height="22" />,
   },
 ];

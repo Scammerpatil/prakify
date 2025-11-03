@@ -1,4 +1,5 @@
 import dbConfig from "@/config/db.config";
+import ParkingArea from "@/models/PrakingArea";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
@@ -31,12 +32,22 @@ export async function GET(req: NextRequest) {
           isVerified: true,
         },
       });
+    } else if (data.role === "user") {
+      const user = await User.findById(data.id).select("-password");
+
+      if (!user) {
+        return NextResponse.json({ error: "User not found" });
+      }
+      return NextResponse.json({ user, status: 200 });
+    } else if (data.role === "parking-area") {
+      const user = await ParkingArea.findById(data.id).select(
+        "-staffLoginCredentials.password"
+      );
+      if (!user) {
+        return NextResponse.json({ error: "Parking area not found" });
+      }
+      return NextResponse.json({ user, status: 200 });
     }
-    const user = await User.findById(data.id).select("-password");
-    if (!user) {
-      return NextResponse.json({ error: "User not found" });
-    }
-    return NextResponse.json({ user, status: 200 });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ err }, { status: 401 });

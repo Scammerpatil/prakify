@@ -16,9 +16,10 @@ const bookingSchema = new Schema(
     extensionCount: { type: Number, default: 0 },
     status: {
       type: String,
-      enum: ["active", "completed", "cancelled"],
+      enum: ["active", "checked-in", "completed", "cancelled"],
       default: "active",
     },
+    transactionId: { type: Schema.Types.ObjectId, ref: "Transaction" },
     totalAmount: { type: Number, default: 0 },
   },
   { timestamps: true }

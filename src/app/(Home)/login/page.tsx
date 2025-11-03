@@ -58,7 +58,7 @@ export default function LoginPage() {
 
   return (
     <section className="bg-base-100">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-[calc(100vh-10rem)] lg:py-0">
         <Link
           href="/"
           className="flex items-center mb-2 text-3xl font-semibold text-base-content"

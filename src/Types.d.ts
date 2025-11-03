@@ -5,7 +5,10 @@ export interface User {
   phone?: string;
   password?: string;
   profileImage?: string;
-  instaUserName?: string;
+  vehicle: {
+    number: string;
+    model: string;
+  };
 }
 
 export interface SideNavItem {
@@ -51,14 +54,14 @@ export interface Slot {
 
 export interface Booking {
   _id?: string;
-  user: string;
-  slot: string;
-  area: string;
+  user: User;
+  slot: Slot;
+  area: ParkingArea;
   vehicleNumber: string;
   startTime: Date;
   endTime: Date;
   extended?: boolean;
   extensionCount?: number;
-  status: "active" | "completed" | "cancelled";
+  status: "active" | "checked-in" | "completed" | "cancelled";
   totalAmount?: number;
 }

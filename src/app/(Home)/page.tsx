@@ -49,7 +49,10 @@ const Index = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden text-base-content px-10">
+      <section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden text-base-content px-10 py-4"
+        id=""
+      >
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-br from-primary/50 via-neutral to-primary/50 rounded-full opacity-20 blur-3xl animate-float"></div>
@@ -160,7 +163,7 @@ const Index = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="glass-card hover:shadow-lg transition-all duration-300"
+                className="bg-base-300 hover:shadow-lg transition-all duration-300"
               >
                 <div className="p-6">
                   <div className="flex flex-col items-center text-center">

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import dbConfig from "@/config/db.config";
 import User from "@/models/User";
+import ParkingArea from "@/models/PrakingArea";
 
 dbConfig();
 
@@ -46,6 +47,35 @@ export async function POST(req: NextRequest) {
         },
         "/admin/dashboard"
       );
+    }
+    if (!email.includes("@")) {
+      const parkingArea = await ParkingArea.findOne({
+        "staffLoginCredentials.username": email,
+      });
+      if (!parkingArea) {
+        return NextResponse.json(
+          { message: "User not found. Please register first." },
+          { status: 404 }
+        );
+      }
+      const isPasswordValid = await bcrypt.compare(
+        password,
+        parkingArea.staffLoginCredentials.password
+      );
+      if (!isPasswordValid) {
+        return NextResponse.json(
+          { message: "Invalid password. Please try again." },
+          { status: 401 }
+        );
+      }
+      var data = {
+        id: parkingArea._id,
+        email: parkingArea.contactEmail,
+        role: "parking-area",
+        name: parkingArea.name,
+        profileImage: parkingArea.displayImage,
+      };
+      return createTokenAndResponse(data, "/parking-area/dashboard");
     }
     const user = await User.findOne({ email });
     if (!user) {

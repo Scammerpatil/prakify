@@ -1,15 +1,15 @@
-import { User } from "@/Types";
+import { ParkingArea, User } from "@/Types";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 interface AuthContextType {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: User | ParkingArea | null;
+  setUser: (user: User | ParkingArea | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | ParkingArea | null>(null);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

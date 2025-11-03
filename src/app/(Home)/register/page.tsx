@@ -126,7 +126,7 @@ export default function RegisterPage() {
   return (
     <>
       <section className="bg-base-100 py-4">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-[calc(100vh-10rem)] lg:py-0">
           <Link
             href="/"
             className="flex items-center mb-2 text-3xl font-semibold text-base-content"
@@ -135,7 +135,7 @@ export default function RegisterPage() {
             <IconParking className="mr-2 text-primary" size={32} />
             Prakify
           </Link>
-          <div className="w-full bg-base-300 rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 text-base">
+          <div className="bg-base-300 rounded-lg shadow dark:border md:mt-0 w-4xl xl:p-0 text-base">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-base-content md:text-2xl text-center">
                 Create an account
@@ -143,191 +143,194 @@ export default function RegisterPage() {
               <p className="text-sm font-light text-center">
                 Start your journey with Prakify
               </p>
-              {/* Name */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  Name <span className="text-error">*</span>{" "}
-                </legend>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="John Doe"
-                  className="input input-primary input-bordered w-full"
-                  value={user.name}
-                  onChange={(e) =>
-                    setUser({
-                      ...user,
-                      name: e.target.value
-                        .split(" ")
-                        .map(
-                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                        )
-                        .join(" "),
-                    })
-                  }
-                />
-              </fieldset>
-              {/* Email */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  Email <span className="text-error">*</span>{" "}
-                </legend>
-                <div className="join">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Name */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    Name <span className="text-error">*</span>{" "}
+                  </legend>
                   <input
-                    type="email"
-                    name="email"
-                    placeholder="user@company.com"
-                    disabled={isEmailVerified || user.name.length < 3}
+                    type="text"
+                    name="name"
+                    placeholder="John Doe"
                     className="input input-primary input-bordered w-full"
-                    value={user.email}
+                    value={user.name}
                     onChange={(e) =>
                       setUser({
                         ...user,
-                        email: e.target.value.toLowerCase(),
+                        name: e.target.value
+                          .split(" ")
+                          .map(
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" "),
                       })
                     }
                   />
-                  {user.email.includes("@") &&
-                    user.email.includes(".") &&
-                    user.email.length > 5 &&
-                    user.name.length > 2 &&
-                    !isEmailVerified && (
-                      <button
-                        className="btn btn-primary join-item"
-                        onClick={verifyEmail}
-                      >
-                        Verify
-                      </button>
-                    )}
-                </div>
-              </fieldset>
-              {/* Phone */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  Phone <span className="text-error">*</span>{" "}
-                </legend>
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="+91 98765 43210"
-                  className="input input-primary input-bordered w-full"
-                  value={user.phone}
-                  onChange={(e) =>
-                    setUser({
-                      ...user,
-                      phone:
-                        e.target.value.length > 10
-                          ? e.target.value.slice(0, 10)
-                          : e.target.value,
-                    })
-                  }
-                />
-              </fieldset>
-              {/* Vehicle Number */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  Vehicle Number <span className="text-error">*</span>{" "}
-                </legend>
-                <input
-                  type="text"
-                  name="vehicleNumber"
-                  placeholder="AB12CD3456"
-                  className="input input-primary input-bordered w-full"
-                  value={user.vehicle.number}
-                  onChange={(e) =>
-                    setUser({
-                      ...user,
-                      vehicle: {
-                        ...user.vehicle,
-                        number:
-                          e.target.value.toUpperCase().length > 10
-                            ? e.target.value.toUpperCase().slice(0, 10)
-                            : e.target.value.toUpperCase(),
-                      },
-                    })
-                  }
-                />
-              </fieldset>
-              {/* Vehicle Model */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  Vehicle Model <span className="text-error">*</span>{" "}
-                </legend>
-                <input
-                  type="text"
-                  name="vehicleModel"
-                  placeholder="Model"
-                  className="input input-primary input-bordered w-full"
-                  value={user.vehicle.model}
-                  onChange={(e) =>
-                    setUser({
-                      ...user,
-                      vehicle: {
-                        ...user.vehicle,
-                        model: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </fieldset>
-
-              {/* Profile Image */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  {" "}
-                  Profile Image <span className="text-error">*</span>
-                </legend>
-                <div className="join">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    disabled={!!user.profileImage || !user.name}
-                    className="file-input file-input-primary file-input-bordered w-full"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setImage(file);
+                </fieldset>
+                {/* Email */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    Email <span className="text-error">*</span>{" "}
+                  </legend>
+                  <div className="join">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="user@company.com"
+                      disabled={isEmailVerified || user.name.length < 3}
+                      className="input input-primary input-bordered w-full"
+                      value={user.email}
+                      onChange={(e) =>
+                        setUser({
+                          ...user,
+                          email: e.target.value.toLowerCase(),
+                        })
                       }
-                    }}
-                  />
-                  {image && !user.profileImage && (
-                    <button
-                      className="btn btn-primary"
-                      onClick={() =>
-                        UploadImage("users", user.name, "profileImage")
-                      }
-                    >
-                      <IconUpload className="mr-2" />
-                      Upload
-                    </button>
-                  )}
-                </div>
-              </fieldset>
-              {/* Password */}
-              <fieldset className="fieldset">
-                <legend className="legend font-bold">
-                  Password <span className="text-error">*</span>{" "}
-                </legend>
-                <div className="join">
+                    />
+                    {user.email.includes("@") &&
+                      user.email.includes(".") &&
+                      user.email.length > 5 &&
+                      user.name.length > 2 &&
+                      !isEmailVerified && (
+                        <button
+                          className="btn btn-primary join-item"
+                          onClick={verifyEmail}
+                        >
+                          Verify
+                        </button>
+                      )}
+                  </div>
+                </fieldset>
+                {/* Phone */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    Phone <span className="text-error">*</span>{" "}
+                  </legend>
                   <input
-                    type={isPasswordVisible ? "text" : "password"}
-                    name="password"
-                    placeholder="••••••••"
+                    type="text"
+                    name="phone"
+                    placeholder="+91 98765 43210"
                     className="input input-primary input-bordered w-full"
-                    value={user.password}
+                    value={user.phone}
                     onChange={(e) =>
-                      setUser({ ...user, password: e.target.value })
+                      setUser({
+                        ...user,
+                        phone:
+                          e.target.value.length > 10
+                            ? e.target.value.slice(0, 10)
+                            : e.target.value,
+                      })
                     }
                   />
-                  <button
-                    type="button"
-                    className="btn btn-square join-item"
-                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                  >
-                    {isPasswordVisible ? <IconEyeOff /> : <IconEye />}
-                  </button>
-                </div>
-              </fieldset>
+                </fieldset>
+                {/* Vehicle Number */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    Vehicle Number <span className="text-error">*</span>{" "}
+                  </legend>
+                  <input
+                    type="text"
+                    name="vehicleNumber"
+                    placeholder="AB12CD3456"
+                    className="input input-primary input-bordered w-full"
+                    value={user.vehicle.number}
+                    onChange={(e) =>
+                      setUser({
+                        ...user,
+                        vehicle: {
+                          ...user.vehicle,
+                          number:
+                            e.target.value.toUpperCase().length > 10
+                              ? e.target.value.toUpperCase().slice(0, 10)
+                              : e.target.value.toUpperCase(),
+                        },
+                      })
+                    }
+                  />
+                </fieldset>
+                {/* Vehicle Model */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    Vehicle Model <span className="text-error">*</span>{" "}
+                  </legend>
+                  <input
+                    type="text"
+                    name="vehicleModel"
+                    placeholder="Model"
+                    className="input input-primary input-bordered w-full"
+                    value={user.vehicle.model}
+                    onChange={(e) =>
+                      setUser({
+                        ...user,
+                        vehicle: {
+                          ...user.vehicle,
+                          model: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </fieldset>
+
+                {/* Profile Image */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    {" "}
+                    Profile Image <span className="text-error">*</span>
+                  </legend>
+                  <div className="join">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      disabled={!!user.profileImage || !user.name}
+                      className="file-input file-input-primary file-input-bordered w-full"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          setImage(file);
+                        }
+                      }}
+                    />
+                    {image && !user.profileImage && (
+                      <button
+                        className="btn btn-primary"
+                        onClick={() =>
+                          UploadImage("users", user.name, "profileImage")
+                        }
+                      >
+                        <IconUpload className="mr-2" />
+                        Upload
+                      </button>
+                    )}
+                  </div>
+                </fieldset>
+                {/* Password */}
+                <fieldset className="fieldset">
+                  <legend className="legend font-bold">
+                    Password <span className="text-error">*</span>{" "}
+                  </legend>
+                  <div className="join">
+                    <input
+                      type={isPasswordVisible ? "text" : "password"}
+                      name="password"
+                      placeholder="••••••••"
+                      className="input input-primary input-bordered w-full"
+                      value={user.password}
+                      onChange={(e) =>
+                        setUser({ ...user, password: e.target.value })
+                      }
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-square join-item"
+                      onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                    >
+                      {isPasswordVisible ? <IconEyeOff /> : <IconEye />}
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
               {/* Terms and Conditions */}
               <div className="flex items-center">
                 <label className="label cursor-pointer">

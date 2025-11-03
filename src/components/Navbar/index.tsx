@@ -19,7 +19,7 @@ export default function () {
   ];
   return (
     <div
-      className={`navbar bg-background/80 backdrop-blur-lg border-b border-border Orbitron lg:px-10 text-base-content ${
+      className={`navbar bg-base-300/80 h-24 backdrop-blur-lg border-b border-border Orbitron lg:px-10 text-base-content ${
         currentPath === "/" ? "fixed top-0 left-0 right-0 z-50" : ""
       }`}
     >
