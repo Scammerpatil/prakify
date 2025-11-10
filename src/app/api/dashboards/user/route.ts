@@ -3,7 +3,7 @@ import Booking from "@/models/Booking";
 import { NextResponse } from "next/server";
 import dbConfig from "@/config/db.config";
 import jwt from "jsonwebtoken";
-import ParkingArea from "@/models/PrakingArea";
+import ParkingArea from "@/models/ParkingArea";
 
 dbConfig();
 

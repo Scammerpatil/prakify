@@ -59,7 +59,6 @@ export default function AreasPage() {
     newArea.longitude || 78.9629,
   ]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedArea, setSelectedArea] = useState<ParkingArea | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const fetchAreas = async () => {
@@ -149,7 +148,7 @@ export default function AreasPage() {
         title="Parking Areas"
         subtitle="Add, Edit or Delete parking areas"
       />
-      <div className="flex flex-row gap-6">
+      <div className="flex flex-row gap-2">
         <input
           type="text"
           name="search"
@@ -161,7 +160,7 @@ export default function AreasPage() {
           }}
         />
         <button
-          className="btn btn-primary btn-outline"
+          className="btn btn-primary"
           onClick={() => {
             (
               document.getElementById(
@@ -213,9 +212,12 @@ export default function AreasPage() {
                     >
                       Location
                     </Link>
-                    <button className="btn btn-primary btn-sm">
+                    <Link
+                      className="btn btn-primary btn-sm"
+                      href={`/admin/areas/view-details?id=${area._id!}`}
+                    >
                       View Details
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -254,7 +256,9 @@ export default function AreasPage() {
                   onChange={(e) =>
                     setNewArea({
                       ...newArea,
-                      name: e.target.value,
+                      name:
+                        e.target.value.charAt(0).toUpperCase() +
+                        e.target.value.slice(1).trim(),
                     })
                   }
                 />
@@ -343,7 +347,10 @@ export default function AreasPage() {
                       ...newArea,
                       staffLoginCredentials: {
                         ...newArea.staffLoginCredentials,
-                        username: e.target.value,
+                        username: e.target.value
+                          .toLowerCase()
+                          .trim()
+                          .replace(/\s+/g, "_"),
                       },
                     })
                   }
@@ -417,7 +424,8 @@ export default function AreasPage() {
                       ...newArea,
                       address: {
                         ...newArea.address,
-                        village: e.target.value,
+                        // no number or special characters are allowed
+                        village: e.target.value.replace(/[^A-Za-z\s]/g, ""),
                       },
                     })
                   }
@@ -438,7 +446,7 @@ export default function AreasPage() {
                       ...newArea,
                       address: {
                         ...newArea.address,
-                        taluka: e.target.value,
+                        taluka: e.target.value.replace(/[^A-Za-z\s]/g, ""),
                       },
                     })
                   }
@@ -459,7 +467,7 @@ export default function AreasPage() {
                       ...newArea,
                       address: {
                         ...newArea.address,
-                        district: e.target.value,
+                        district: e.target.value.replace(/[^a-zA-Z\s]/g, ""),
                       },
                     })
                   }
@@ -480,7 +488,7 @@ export default function AreasPage() {
                       ...newArea,
                       address: {
                         ...newArea.address,
-                        state: e.target.value,
+                        state: e.target.value.replace(/[^a-zA-Z\s]/g, ""),
                       },
                     })
                   }

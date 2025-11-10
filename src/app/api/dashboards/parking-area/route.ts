@@ -4,7 +4,7 @@ import Slot from "@/models/Slot";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import dbConfig from "@/config/db.config";
-import ParkingArea from "@/models/PrakingArea";
+import ParkingArea from "@/models/ParkingArea";
 
 dbConfig();
 

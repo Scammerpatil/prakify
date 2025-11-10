@@ -1,7 +1,7 @@
 import User from "@/models/User";
 import Booking from "@/models/Booking";
 import { NextResponse } from "next/server";
-import ParkingArea from "@/models/PrakingArea";
+import ParkingArea from "@/models/ParkingArea";
 
 export async function GET() {
   try {

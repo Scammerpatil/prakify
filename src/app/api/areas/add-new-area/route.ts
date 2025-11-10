@@ -1,4 +1,4 @@
-import ParkingArea from "@/models/PrakingArea";
+import ParkingArea from "@/models/ParkingArea";
 import Slot from "@/models/Slot";
 import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";

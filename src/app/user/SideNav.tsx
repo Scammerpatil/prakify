@@ -109,12 +109,12 @@ const SideNav = ({
                     </div>
                     <hr className="my-2 border-base-content" />
                     <div className="flex flex-col">
-                      <Link
+                      {/* <Link
                         className="text-left px-4 py-2 text-base-content hover:bg-base-200 transition duration-200"
                         href={`/user/settings`}
                       >
                         My Account
-                      </Link>
+                      </Link> */}
                       <button
                         onClick={handleLogout}
                         className="text-left px-4 py-2 text-base-content text-dark hover:bg-base-200 transition duration-200"
@@ -158,12 +158,12 @@ const SideNav = ({
                     </div>
                     <hr className="my-2 border-base-content" />
                     <div className="flex flex-col">
-                      <Link
+                      {/* <Link
                         className="text-left px-4 py-2 text-base-content hover:bg-base-200 transition duration-200"
                         href={`/user/settings`}
                       >
                         My Account
-                      </Link>
+                      </Link> */}
                       <button
                         onClick={handleLogout}
                         className="text-left px-4 py-2 text-base-content text-dark hover:bg-base-200 transition duration-200"

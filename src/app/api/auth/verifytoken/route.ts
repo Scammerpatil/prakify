@@ -1,5 +1,5 @@
 import dbConfig from "@/config/db.config";
-import ParkingArea from "@/models/PrakingArea";
+import ParkingArea from "@/models/ParkingArea";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";

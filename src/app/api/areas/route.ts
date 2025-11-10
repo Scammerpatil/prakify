@@ -1,5 +1,5 @@
 import dbConfig from "@/config/db.config";
-import ParkingArea from "@/models/PrakingArea";
+import ParkingArea from "@/models/ParkingArea";
 import { NextResponse } from "next/server";
 
 dbConfig();
